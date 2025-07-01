@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shadertoy Live Wallpaper</title>
+        <style>
+            /* Make the page full-screen and remove scrollbars */
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: #000;
+            }
+            /* Style the embedded iframe to cover the entire viewport */
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+            /* Style for error messages */
+            .error {
+                color: #fff;
+                text-align: center;
+                margin-top: 20%;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            // Parse URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const shaderId = params.get("id");
+            const guiParam = params.get("gui");
+            const gui = guiParam === "true" ? "true" : "false";
+            const mutedParam = params.get("mute");
+            const muted = mutedParam === "false" ? "false" : "true";
+
+            if (!shaderId) {
+                // If no ID provided, display an error message
+                const msg = document.createElement("div");
+                msg.className = "error";
+                msg.innerText =
+                    "Error: No shader ID specified. Use ?id=ShaderID&gui=true&muted=false to adjust settings.";
+                document.body.appendChild(msg);
+            } else {
+                // Build Shadertoy embed URL with parameters
+                const embedUrl = `https://www.shadertoy.com/embed/${shaderId}?gui=${gui}&muted=${muted}&paused=false`;
+                const iframe = document.createElement("iframe");
+                iframe.src = embedUrl;
+                iframe.allowFullscreen = true; // enable fullscreen
+                document.body.appendChild(iframe);
+            }
+        </script>
+    </body>
+</html>

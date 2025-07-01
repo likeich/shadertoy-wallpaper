@@ -1,0 +1,25 @@
+{
+  "options": [
+    {
+      "type": "text",
+      "name": "Shader ID",
+      "key": "id",
+      "description": "Shadertoy shader ID",
+      "defaultValue": "Wt33Wf"
+    },
+    {
+      "type": "switch",
+      "name": "Show GUI",
+      "key": "gui",
+      "description": "Display Shadertoy controls",
+      "defaultValue": false
+    },
+    {
+      "type": "switch",
+      "name": "Mute Audio",
+      "key": "mute",
+      "description": "Mute audio by default",
+      "defaultValue": true
+    }
+  ]
+}
