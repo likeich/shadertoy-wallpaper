@@ -43,6 +43,11 @@
             const mutedParam = params.get("mute");
             const muted = mutedParam === "false" ? "false" : "true";
 
+            // If GUI is off, disable all pointer/touch events
+            if (gui === "false") {
+                document.documentElement.style.pointerEvents = "none";
+            }
+
             if (!shaderId) {
                 // If no ID provided, display an error message
                 const msg = document.createElement("div");
